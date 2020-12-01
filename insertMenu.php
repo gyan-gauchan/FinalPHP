@@ -6,7 +6,7 @@ require_once 'dbConnection.php';
 <!DOCTYPE html>
 <html>
   <head>
-    <title>About Us</title>
+    <title>Insert Menu</title>
     <!--<link rel="stylesheet" href="styleau.css">-->
   </head>
   <header>

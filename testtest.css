@@ -1,0 +1,54 @@
+body{
+
+background-image: url("https://picsum.photos/id/1022/2000/2000");
+
+
+border: 0;
+border-radius: 0;
+z-index: 1000;
+font-family: "Roboto Condensed", sans-serif;
+text-transform: uppercase;
+letter-spacing: 3px;
+font-size: 11px;
+transition: background, padding 0.4s ease-in-out 0s;
+}
+
+h1{
+	color: #57b846;;
+	text-align:left;
+}
+
+h2{
+	color: #57b846;
+}
+
+.btnSignUp{
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff; 
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background: #57b846;
+	opacity:0.7;
+
+  }
+
+.btnSignUp:hover{
+	opacity:1.0;
+}
+
+.img{
+    background repeat: no-repeat;
+	background-size: cover; 
+	
+}
+
+.roundedInput2 {
+    margin:0;
+	padding:0;
+    border-radius:25px;
+    width: 200px;
+    background: #e6e6e6;
+}
+
