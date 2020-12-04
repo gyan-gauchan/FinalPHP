@@ -1,20 +1,37 @@
+
 <?php
 session_start();
 if(!isset($_SESSION['valid_user'])){
   echo  "You are not logged in. Please login";
   echo '<p><a href="loginPage.html">Click here to Login</a></p>';
+  die();
 }
 else{
+  if(!isset($_POST['orderNow'])){
+    echo '<p> Please enter the order quantity<p>';
+  }else{
+
  // echo "Your session is running " .$_SESSION['valid_user'];
-
-  $nameEmail=$_SESSION['valid_user'];
-  $getName= explode('@',$nameEmail);
-  $uName= ucwords($getName[0]);
+ $order = [];
+ $_SESSION['order'] = [];
+  foreach($_POST as $key=>$value){
+    if(stristr($key, 'quantity')) {
+      if(isset($value) && !empty($value)) {
+       $foodID = explode('_', $key)[1];
+       $order['foodID'] = $foodID;
+       $order['quantity'] = $value;
+       $_SESSION['order'][] = $order;
+      //  echo $foodID;
+      //  echo $value.'</br>';
+      }
+    }
+    
+  } 
+}}require_once 'dbConnection.php';
+ // print_r($_SESSION);
+  $firstName=$_SESSION['first_name'];
 ?>
-<?php
-require_once 'dbConnection.php';
 
-?>
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +50,7 @@ require_once 'dbConnection.php';
     </header>
   <body>
 
-  <form method="post" action="orderConfirmation.php"> 
+  <!-- <form method="post" action="orderConfirmation.php">  -->
     
       <?php
  $totalAfterTax =0.0;
@@ -43,11 +60,12 @@ require_once 'dbConnection.php';
 if(isset($_POST['orderNow']))  {
     // display ordered items
     //print_r($_POST);
+    echo '<h1>'.$firstName.'\'s order in the cart</h1>';
+    echo '<h2>Please review your order</h2>';
 
     $sql = "SELECT FoodID, foodName, image_path, price FROM menu";
     $result = $db->query($sql);
-    echo '<h1>'.$uName.'\'s order in the cart</h1>';
-    echo '<h2>Please review your order</h2>';
+
   
     if ($result->num_rows > 0) {
       $total = 0;
@@ -68,11 +86,10 @@ if(isset($_POST['orderNow']))  {
             <td style="text-align:right">$ '.number_format($price,2).'</td>
             </tr>';
          
-  
             $total += $price;
           }
       }
-    
+    }
       $taxrate=0.10; //food tax rate
       
       $totalAfterTax=((number_format($total,2))+((number_format($total,2))*$taxrate));
@@ -83,7 +100,7 @@ if(isset($_POST['orderNow']))  {
         echo '<tr><td colspan=2><p><strong>Total after tax </strong></td>'.
         '<td style ="text-align:right"><strong>$ '.$totalAfterTax.'</strong></td></p></tr>';
         echo "</table>";
-    }
+    
   }
 
  else { 
@@ -109,12 +126,12 @@ $db->close();
 <h1>Payment Details</h1>
 <h2>Select payment type</h2>
 
-<!-- <form method="post" action="orderConfirmation.php"> -->
+<form method="post" action="orderConfirmation.php">
 <p><strong>Amout Due: <?php echo $totalAfterTax; ?></strong></p>
 
 <select name="payType" id="payType">
-  <option value="credit">Credit Card</option>
-  <option value="paypal">Paypal</option>
+  <option value="Credit Card">Credit Card</option>
+  <option value="Paypal">Paypal</option>
 </select>
 
 
@@ -128,6 +145,4 @@ $db->close();
 </body>
 </html>
 
-<?php
-}
-?>
+

@@ -1,6 +1,19 @@
 <?php
-//Connect to the db
-require_once 'dbConnection.php';
+session_start();
+if(!isset($_SESSION['valid_user'])){
+  echo "Access Denied! You are not logged in. Please login";
+  echo '<p><a href="loginPage.html">Click here to Login</a></p>';
+  die();
+
+}
+else{
+  //echo "Your session is running " .$_SESSION['valid_user'];
+    //Connect to the db
+    require_once 'dbConnection.php';
+    $firstName=$_SESSION['first_name'];
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -8,12 +21,14 @@ require_once 'dbConnection.php';
   <head>
     <title>Insert Menu</title>
     <!--<link rel="stylesheet" href="styleau.css">-->
+    <link rel="stylesheet" href="mycss1.css">
+   <link rel="stylesheet" href="mycss2.css">
   </head>
   <header>
   <ul class="nav">
   <li class="navop"><a href="index.html">Home</a></li>
   <li class="navop"><a href="restaurant_menu.html">Menu</a></li>
-  <li class="navop"><a href="loginPage.html">Login</a></li>
+  <li class="navop"><a href="logout.php">Sign Out</a></li>
   <li class="navop"><a href="contact2.html">Contact</a></li>
 	</ul>
   
@@ -67,9 +82,8 @@ if(move_uploaded_file($_FILES["uploadpics"]["tmp_name"], $targetFilePath)){
 } 
 
   ?>        
-   <input type ="button" onclick ="location.href='createMenuPage.html';" value= "Add More Menu"/>
-  <input type ="button" onclick ="location.href='about.html';" value= "Back to Home Page"/>
-
+   <input type ="button" name = "btnSignUp" onclick ="location.href='createMenuPage.html';" value= "Add More Menu"/>
+  
 
       </body>
       </html>

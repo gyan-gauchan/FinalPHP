@@ -1,20 +1,14 @@
 <?php
 session_start();
 if(isset($_SESSION['valid_user'])){
+//  echo "Your session is running " .$_SESSION['valid_user'];
 
-  echo "Your session is running " .$_SESSION['valid_user'];
-
-  $nameEmail=$_SESSION['valid_user'];
-  $getName= explode('@',$nameEmail);
-  $uName= ucwords($getName[0]);
+ 
+  $firstName=$_SESSION['first_name'];
 }
-?>
-<?php
-//Connect to the db
 require_once 'dbConnection.php';
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,7 +24,12 @@ require_once 'dbConnection.php';
   <ul class="nav">
   <li class="navop"><a href="about.html">Home</a></li>
   <li class="navop"><a href="restaurant_menu.html">Menu</a></li>
-  <li class="navop"><a href="loginPage.html">Login</a></li>
+  <?php if(isset($_SESSION['valid_user'])){ 
+    echo '<li class="navop"><a href="logout.php">Sign Out</a></li>';
+  }else{
+    echo '<li class="navop"><a href="loginPage.html">Login</a></li>';  
+  } 
+  ?>
   <li class="navop"><a href="contact2.html">Contact</a></li>
 	</ul>
     </header>
@@ -38,6 +37,10 @@ require_once 'dbConnection.php';
 
   <div class="row">
     <div class ="column left">
+      <?php
+    if(isset($_SESSION['valid_user'])){
+      echo '<h2>Hello '.$firstName.'!</h2>';
+    } ?>
       <div class="h1center">
       <h1>Food Menu</h1>
       <h2>Please enter the quantity</h2>
@@ -83,20 +86,7 @@ require_once 'dbConnection.php';
     </div>
 
     <div class="column right">
-      <?php 
-      if(isset($_SESSION['valid_user'])){?>
-    <input type ="button" class="btnSignUp" onclick ="location.href='logout.php';" value= "Log Out"/></br></br>
-   <?php
-    echo  '<h2>Hello ' .$uName.'!</h2></br>';
-      }else {
-        ?>
-        <h3>Please login to order</h3>
-        <input type ="button" class="btnSignUp" onclick ="location.href='loginPage.html';" value= "Login"/></br></br>
-        
-<?php
-
-      }
-    ?>
+   
     <p><input type="submit" class="btnSignUp" name = "orderNow" value="Order Now" /></p>
          
 </form>

@@ -3,13 +3,13 @@ session_start();
 if(!isset($_SESSION['valid_user'])){
   echo "Access Denied! You are not logged in. Please login";
   echo '<p><a href="loginPage.html">Click here to Login</a></p>';
+  die();
 }
 else{
   echo "Your session is running " .$_SESSION['valid_user'];
 
-  $nameEmail=$_SESSION['valid_user'];
-  $getName= explode('@',$nameEmail);
-  $uName= ucwords($getName[0]);
+  $firstName=$_SESSION['first_name'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -156,10 +156,11 @@ else{
 </div>
 
 <div class ="column" style="padding-top:100px;padding-left:150px;">
-<h2>Welcome back <?php echo $uName; ?>!</h2></br></br>
+<h2>Welcome back <?php echo $firstName; ?>!</h2></br></br>
 <input type ="button" class="btnSignUp" onclick ="location.href='logout.php';" value= "Log Out"/></br></br></br></br>
 <input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Order Here"/></br></br>
-<input type ="button" class="btnSignUp" onclick ="location.href='createMenuPage.html';" value= "Insert Menu"/></br></br>
+<input type ="button" class="btnSignUp" onclick ="location.href='createMenuPage.php';" value= "Insert Menu"/></br></br>
+<input type ="button" class="btnSignUp" onclick ="location.href='editMenu.php';" value= "Edit Menu"/></br></br>
 <input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.html';" value= "Order Search"/>
 </div>
 
@@ -203,6 +204,3 @@ else{
   </body>
 </html>
         </html>
-        <?php
-}
-?>

@@ -7,9 +7,7 @@ if(!isset($_SESSION['valid_user'])){
 else{
   echo "Your session is running " .$_SESSION['valid_user'];
 
-  $nameEmail=$_SESSION['valid_user'];
-  $getName= explode('@',$nameEmail);
-  $uName= ucwords($getName[0]);
+  $firstName=$_SESSION['first_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -100,7 +98,7 @@ else{
 
 <div class="container">
 
-<h1>Welcome <?php echo $uName;?> </h1>
+<h1>Welcome back <?php echo $firstName;?>! </h1>
     <input type ="button" class="btnSignUp" onclick ="location.href='logout.php';" value= "Log Out"/></br></br>
     <input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Order Here"/></br></br>
 	<h3><ul class='options'>

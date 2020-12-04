@@ -36,35 +36,51 @@ require_once 'dbConnection.php';
             $resultStore = $qResult->fetch_object();
             $result =$qResult->num_rows;
             
-            $query2 = "select * from user1 where Email ='".$email."' and Password='".$pass."' and Role = '".$role."'";
+            // $query2 = "select * from user1 where Email ='".$email."' and Password='".$pass."' and Role = '".$role."'";
              
-            $qResult2 = $db->query($query2);
-            $resultStore2 = $qResult2->fetch_object();
+            // $qResult2 = $db->query($query2);
+            // $resultStore2 = $qResult2->fetch_object();
+            if($result > 0) {
+                $_SESSION['valid_user']= $email;
+                $_SESSION['user_id'] = $resultStore->UserID;
+                $_SESSION['first_name']=$resultStore->FirstName;
+                if($resultStore->Role == 'Admin') {
+                    header("Location: admin.php");
+                } else {
+                    echo '<p>You are logged in as: '.$_SESSION['valid_user'].'
+                    <br/>';
+                    echo '  </p>';
+                    header("Location: profile.php");
+                }
+
+            } else {
+                echo '<p>Could not log you in. Email or Passsword is incorrect.</p>';
+            }
         
             
-            
-            if(isset($resultStore) && $resultStore == $resultStore2){
-                header("Location: admin.php");
-            }
+        //     die();
+        //     if(isset($resultStore) && $resultStore == $resultStore2){
+        //         header("Location: admin.php");
+        //     }
 
-           else if ($result > 0){
-                $_SESSION['valid_user']= $email;
-                echo '<p>You are logged in as: '.$_SESSION['valid_user'].'
-                <br/>';
-                echo '  </p>';
-                header("Location: profile.php");
-            }
+        //    else if ($result > 0){
+        //         $_SESSION['valid_user']= $email;
+        //         echo '<p>You are logged in as: '.$_SESSION['valid_user'].'
+        //         <br/>';
+        //         echo '  </p>';
+        //         header("Location: profile.php");
+        //     }
             
 
             
-                else if (isset($email)) {
+        //         else if (isset($email)) {
             
-                echo '<p>Could not log you in. Email or Passsword is incorrect.</p>';
-                }
-                else {
+        //         echo '<p>Could not log you in. Email or Passsword is incorrect.</p>';
+        //         }
+        //         else {
                 
-                echo '<p>You are not logged in.</p>';
-                }
+        //         echo '<p>You are not logged in.</p>';
+        //         }
             ?>
         <p><a href = "loginPage.html">Go back to login</a></p>
         </body>

@@ -34,7 +34,7 @@ require_once 'dbConnection.php';
     }
 
 
-   $query = "SELECT firstName,lastName,foodName,quantity 
+   $query = "SELECT firstName,lastName,foodName,quantity,price
             FROM user1 u 
             inner join order1 o on(u.UserID=o.UserID)
             inner join orderline ol on (o.orderid=ol.OrderID) 
@@ -47,21 +47,49 @@ require_once 'dbConnection.php';
     $stmt->execute();
     $stmt->store_result();
   
-    $stmt->bind_result($firstName, $lastName, $foodName, $quantity);
+    $stmt->bind_result($firstName, $lastName, $foodName, $quantity,$price);
 
-    echo "<p>Number of orders found: ".$stmt->num_rows."</p>";
+
+    echo '<p>Customer Name: ' .$firstName.' '.$lastName.'</p>';
+    echo '<p>Number of orders found: '.$stmt->num_rows.'</p>';
+    $amount=0.0;
+    $total=0.0;
+    ?>
+    <table>
+      <tr>
+        <th>Menu Items</th>
+        <th>Menu Items</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+  </tr>
+    <?php
 
     while($stmt->fetch()) {
-      echo "<p>First Name: ".$firstName;
-      echo "<br />Last Name: ".$lastName;
-      echo "<br />Food Name: ".$foodName;
-      echo "<br />Quantity: " .$quantity ."</p>";
+$amount= number_format(($price*$quantity),2);
+      echo '<tr>
+              <td>'.$foodName.'</td>
+              <td>'.$quantity.'</td>
+              <td>'.$price.'</td>
+              <td>'.$amount.'</td>
+              
+      
+      </tr>';
+      $total+=$amount;
+
     }
+    ?>
+    <tr>
+      <td colspan='3'>Total</td>
+      <td><?php echo number_format($total,2);?><td>
+  </tr>
+  </table>
+    <?php
 
     $stmt->free_result();
     $db->close();
   ?>
-
+</br>
+  </br>
 <input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.html';" value= "Back to Order Search"/>
 </body>
 </html>
