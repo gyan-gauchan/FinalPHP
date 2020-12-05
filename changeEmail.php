@@ -1,8 +1,3 @@
-
-<?php
-//Connect to the db
-require_once 'dbConnection.php';
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,11 +26,11 @@ require_once 'dbConnection.php';
                exit;
            }
         
-        //    $db = new mysqli('localhost', 'root', '', 'restApp');
-        //    if (mysqli_connect_errno()){
-        //        echo '<p>Error: Could not connect to database.<br/>
-        //        please try again later.<p>';
-        //    }
+           $db = new mysqli('localhost', 'root', '', 'restApp');
+           if (mysqli_connect_errno()){
+               echo '<p>Error: Could not connect to database.<br/>
+               please try again later.<p>';
+           }
 
            $query = "select Email from user1 where Email ='".$prevEmail."'";
            $result = $db->query($query);
@@ -58,6 +53,6 @@ require_once 'dbConnection.php';
 
 
            ?>
-           <a href ="profile.php">Back to Profile</a>
+           <a href ="profile.html">Back to Profile</a>
            </body>
            </html>
