@@ -67,7 +67,7 @@ require('header.php');
             <div class="row">
               <div class="col-sm-6">
                 <h4 class="font-alt">Get in touch</h4><br/>
-                <form id="contactForm" role="form" method="post" action="php/contact.php">
+                <form id="contactForm" role="form" method="post" action="contactFeedback.php">
                   <div class="form-group">
                     <label class="sr-only" for="name">Name</label>
                     <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
@@ -107,7 +107,7 @@ require('header.php');
           <div class="container">
             <div class="row">
               <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="index.html">Metro</a>, All Rights Reserved</p>
+                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="restIndex.php">Metro</a>, All Rights Reserved</p>
               </div>
               <div class="col-sm-6">
                 <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
