@@ -2,8 +2,7 @@
 require('header.php');
 ?>
 <header class="main-header">
-	<h1>What are we about?</h1>
-	  <h1>Delectable Dishes!</h1>
+	
 	
     </header>
 		
@@ -11,12 +10,12 @@ require('header.php');
 			<p class="intro">
 				Our menu has been handcrafted to please every appetite.  Master chefs prepare every meal to perfection.  Come try our cuisine today!
 			</p>
-			<a class="callout" href="about.html">Find out more</a>
+			<a class="callout" href="restaurant_menu.php">Find out more</a>
       
       <div class="wildlife">
         <h2>Check out our menu</h2>
         <p>
-         We are sure you won't be dissapointed.  Become a  <a href="signUp.html">member</a>, or sign up for <a href="contact2.html">rewards</a>, and start earning your points today.
+         We are sure you won't be dissapointed.  Become a  <a href="signUp.php">member</a>, or sign up for <a href="contact2.php">rewards</a>, and start earning your points today.
         </p>
       </div>
       
@@ -46,7 +45,7 @@ require('header.php');
 		  
             <div class="row">
               <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="index.html">Metro</a>, All Rights Reserved</p>
+                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="restIndex.php">Metro</a>, All Rights Reserved</p>
               </div>
               <div class="col-sm-6">
                 <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
