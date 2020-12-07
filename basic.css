@@ -7,7 +7,9 @@ body{
 p{
 color:#fff;
 font-size: 15px;
+
 }
+
 
 
 h1 {  
@@ -227,17 +229,37 @@ a:active {
 .intro {
   font-size: 1.25em; /* 20px/16px */
   line-height: 1.6;  
+ 
 }
 
 
-
-.pic{
-	height: 300px;
-	width: 1500px;
-	background-image: url("https://picsum.photos/id/1042/1500?grayscale");
-	opacity: 5%;
+.all{
+	margin-bottom:120px;
 }
 
-.logo{
-	 border-top: 10px solid red;
+.boxy{
+	height: 900px;
+	width: 700px;
+	background-color:black;
+	 padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+	
 }
+.boxy2{
+	position:absolute;
+	margin-bottom:30px;
+	padding-left: 5px;
+}
+
+.boxy3{
+	height: 350px;
+	width: 100%;
+	margin-bottom: 20px;
+	padding-left: 100px;
+	background-color:black;
+	object-fit: cover;
+	
+
+}
+
