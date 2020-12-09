@@ -7,9 +7,9 @@
             
         <h4>FEEDBACK</h4>
             <?php
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $message = $_POST['message'];
+            $name = htmlspecialchars($_POST['name']);
+            $email = htmlspecialchars($_POST['email']);
+            $message = htmlspecialchars($_POST['message']);
 
             echo "<h4>Thanks for your feedback $name!</h4>";
             echo "Your feedback was:$message<br/>";

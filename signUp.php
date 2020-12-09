@@ -1,6 +1,18 @@
-<?php
-require('header.php');
-?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <!-- <link rel="stylesheet" href="mycss1.css"> -->
+    <link rel="stylesheet" href="basic.css">
+  
+  </head>
+
+  <?php
+  require_once 'header.php'; ?>
+  <body>
+
+  <div style="padding-Left:100px;padding-top:20px; width:100%">   
               
         <h2 class="h2heading">Create your Account</h2>
 
@@ -37,54 +49,17 @@ require('header.php');
             
           
           
-            <tr>
-                <td><input type="submit" class="btnSignUp" value="Sign Up"></td> 
-            </tr>
-
+          
 
     </table>
+</br>
+    <input type="submit" class="loginButton" value="Sign Up">
         </form> 
 
-      </br>
-   </br>
    <label><h3 style="margin-bottom: 0;padding-left: 20px;">Already signed up?</h3></label>
 </br>
         <input type ="button" class="loginButton" onclick ="location.href='loginPage.php';" value= "Login Here"/>  
-     <hr class="divider-d">
-        <footer class="footer bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="index.html">Metro</a>, All Rights Reserved</p>
-              </div>
-              <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-    </main>
-    <!--  
-    JavaScripts
-    =============================================
-    -->
-    <script src="assets/lib/jquery/dist/jquery.js"></script>
-    <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/lib/wow/dist/wow.js"></script>
-    <script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-    <script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
-    <script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-    <script src="assets/lib/flexslider/jquery.flexslider.js"></script>
-    <script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="assets/lib/smoothscroll.js"></script>
-    <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
-    <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
-    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK2Axt8xiFYMBMDwwG1XzBQvEbYpzCvFU"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
-	
+<?php require_once 'footer.php'; ?>
+</div>
     </body>
     </html>

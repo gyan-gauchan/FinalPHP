@@ -61,24 +61,24 @@ else{
   <head>
     <title>Order Confirmation</title>
    <!-- <link rel="stylesheet" href="styleau.css">-->
-   <link rel="stylesheet" href="mycss1.css">
+   <!-- <link rel="stylesheet" href="mycss1.css"> -->
+   <style>
+        .center {
+          margin: auto;
+          width: 60%;
+          padding: 10px;
+        }
+        table.tableFontSize tr td{
+  font-size:18px;
+}
+     </style>
+   <!-- <link rel="stylesheet" href="basic.css"> -->
   </head>
-  <header>
-  <ul class="nav">
-  <li class="navop"><a href="about.html">Home</a></li>
-  <li class="navop"><a href="restaurant_menu.html">Menu</a></li>
-  <?php if(isset($_SESSION['valid_user'])){ 
-    echo '<li class="navop"><a href="logout.php">Sign Out</a></li>';
-  }else{
-    echo '<li class="navop"><a href="loginPage.html">Login</a></li>';  
-  } 
-  ?>
-  <li class="navop"><a href="contact2.html">Contact</a></li>
-	</ul>
-    </header>
+  <?php
+  require_once 'header2.php'; ?>
   <body>
 
-
+<div class="center">
     
 <?php
  $totalAfterTax =0.0;
@@ -115,16 +115,16 @@ $result1 =$db->query($SQL);
 
 if($result1->num_rows>0){
   $total =0.0;
-  echo "<table style='width:20%;'><tr>
+  echo "<table class ='tableFontSize' style='width:70%;'><tr>
       <td><strong>Food</strong></td>
-      <td><strong>Quantity</strong></td>
+      <td style='text-align:center'><strong>Quantity</strong></td>
       <td style='text-align:right'><strong>Price</strong></td>
       </tr></b>";
   while($row = $result1->fetch_assoc()) {
     
   $price=$row['Quantity']*$row['Price'];
 
-  echo ' <tr>
+  echo ' <tr style="color:red">
   <td>'.$row['FoodName'].'</td>
   <td style="text-align:center">'.$row['Quantity'].'</td>
   <td style="text-align:right">$ '.number_format($price,2).'</td>
@@ -147,6 +147,8 @@ exit();
 
 }
 
+echo '</br></br>';
+
 
 
 $db->close();
@@ -155,13 +157,16 @@ if(isset($_POST['payType'])){
     $select1 = $_POST['payType'];
     switch ($select1) {
         case 'Credit Card':
-            echo '<p> Your <strong>Credit Card</strong> is charged for the amount of $ '.$totatWithtax;
+            echo '<h4> Your <strong>Credit Card</strong> is charged for the amount of $ '.$totatWithtax.'</h4>';
             break;
         case 'Paypal':
-            echo '<p> Your <strong>Paypal</strong> is charged for the amount of $ '.$totatWithtax;
+            echo '<h4> Your <strong>Paypal</strong> is charged for the amount of $ '.$totatWithtax.'</h4>';
+            break;
+        case 'Cash':
+            echo '<h4> Your <strong>Cash</strong> is charged for the amount of $ '.$totatWithtax.'</h4>';
             break;
         default:
-            # code...
+           
             break;
     }
 }
@@ -182,6 +187,9 @@ else{
 ?>
   </br>
 </br><input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Order Again"/></br></br>
+</div>
+<?php
 
+  require_once 'footer.php'; ?>
 </body>
 </html>

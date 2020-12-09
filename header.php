@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--  
-    Document Title
-    =============================================
-    -->
-    <title>Titan | Multipurpose HTML5 Template</title>
+<?php
+if (!isset($_SESSION)) { 
+  session_start(); 
+}
+?>
+
     <!--  
     Favicons
     =============================================
@@ -54,7 +49,8 @@
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
 	<link href="basic.css" rel="stylesheet">
   </head>
-  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+  <!-- <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60"> -->
+  <header>
     <main>
       <div class="page-loader">
         <div class="loader">Loading...</div>
@@ -62,18 +58,33 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Metro Cuisine</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.php">Metro Cuisine</a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a  href="restindex.php">Home</a>
-			   <li class="dropdown"><a  href="loginPage.php">Login</a>
-			   <li class="dropdown"><a  href="#" >Order Online</a>
-			  <li class="dropdown"><a  href="restaurant_menu.php" >Menu</a>
-			   <li class="dropdown"><a  href="newAbout.php" >About Us</a>
-			    <li class="dropdown"><a  href="contact2.php" >Contact Us</a>
-                </li>
+              <li class="dropdown"><a  href="index.php">Home</a>        
+			        <li class="dropdown"><a  href="menudisplay.php" >Order Online</a>
+			        <li class="dropdown"><a  href="restaurant_menu.php" >Menu</a>
+			        <li class="dropdown"><a  href="newAbout.php" >About Us</a>
+			        <li class="dropdown"><a  href="contact2.php" >Contact Us</a>
+              <?php if(isset($_SESSION['valid_user'])){ 
+              echo '<li class="navop"><a href="logout.php">Sign Out</a></li>';
+                 }else{
+                echo '<li class="navop"><a href="loginPage.php">Login</a></li>';  
+                  } 
+                ?>
+                  
+              <?php if(!isset($_SESSION['role'])){ 
+              }   
+                else if($_SESSION['role']=='Admin'){
+                  echo '<li class="dropdown"><a  href="admin.php" >Admin Page</a>';
+              }
+                else{
+            
+              } ?>
+            </li>
 				</ul>
 			</div>
 			</div>
        </nav>
+       </header>

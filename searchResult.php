@@ -1,25 +1,37 @@
 <?php
 //Connect to the db
 require_once 'dbConnection.php';
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>Order Search Results</title>
+  <style>
+ table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding:10px;
+} 
+  </style>
 </head>
 <body>
   <h1>Order Search Results</h1>
   <?php
     // create short variable names
-    $searchtype=$_POST['searchtype'];
-    $searchterm=$_POST['searchterm'];
+    // $searchtype=$_POST['searchtype'];
+    // $searchterm=$_POST['searchterm'];
 
-    if (!$searchtype || !$searchterm) {
+    if (!$_POST['searchtype'] || !$_POST['searchterm']) {
        echo '<p>You have not entered search details.<br/>
        Please go back and try again.</p>';
-       exit;
+      echo '<p><a href = "searchOrder.php">Go back to Search Order</a></p>';
+       die();
     }
+     $searchtype=$_POST['searchtype'];
+    $searchterm=$_POST['searchterm'];
 
     // whitelist the searchtype
     switch ($searchtype) {
@@ -34,7 +46,7 @@ require_once 'dbConnection.php';
     }
 
 
-   $query = "SELECT firstName,lastName,foodName,quantity,price
+   $query = "SELECT firstName,lastName,foodName,quantity,price,ol.createdOn
             FROM user1 u 
             inner join order1 o on(u.UserID=o.UserID)
             inner join orderline ol on (o.orderid=ol.OrderID) 
@@ -47,16 +59,17 @@ require_once 'dbConnection.php';
     $stmt->execute();
     $stmt->store_result();
   
-    $stmt->bind_result($firstName, $lastName, $foodName, $quantity,$price);
+    $stmt->bind_result($firstName, $lastName, $foodName, $quantity,$price,$createdOn);
 
 
-    echo '<p>Customer Name: ' .$firstName.' '.$lastName.'</p>';
+    // echo '<p>Customer Name: ' .$firstName.' '.$lastName.'</p>';
     echo '<p>Number of orders found: '.$stmt->num_rows.'</p>';
     $amount=0.0;
     $total=0.0;
     ?>
-    <table>
+    <table style="width:650px">
       <tr>
+      <th>Date</th>
         <th>Menu Items</th>
         <th>Menu Items</th>
         <th>Unit Price</th>
@@ -67,10 +80,11 @@ require_once 'dbConnection.php';
     while($stmt->fetch()) {
 $amount= number_format(($price*$quantity),2);
       echo '<tr>
+              <td>'.$createdOn.'</td>
               <td>'.$foodName.'</td>
-              <td>'.$quantity.'</td>
-              <td>'.$price.'</td>
-              <td>'.$amount.'</td>
+              <td style ="text-align:center">'.$quantity.'</td>
+              <td style="text-align:center">'.number_format($price,2).'</td>
+              <td style="text-align:right">'.$amount.'</td>
               
       
       </tr>';
@@ -78,9 +92,10 @@ $amount= number_format(($price*$quantity),2);
 
     }
     ?>
+   
     <tr>
-      <td colspan='3'>Total</td>
-      <td><?php echo number_format($total,2);?><td>
+      <td colspan='4'>Total</td>
+      <td style="text-align:right"><?php echo number_format($total,2);?></td></b>
   </tr>
   </table>
     <?php
@@ -90,6 +105,6 @@ $amount= number_format(($price*$quantity),2);
   ?>
 </br>
   </br>
-<input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.html';" value= "Back to Order Search"/>
+<input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.php';" value= "Back to Order Search"/>
 </body>
 </html>

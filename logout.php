@@ -21,7 +21,7 @@ session_destroy();
         echo '<p> You were not logged in, and so have not been logged out.</p>';
     }
     ?>
-    <p><a href="loginPage.html">Back to Login Page</a></p>
-    <p><a href="index.html"> Home Page</a></p>
+    <p><a href="loginPage.php">Back to Login Page</a></p>
+    <p><a href="index.php"> Home Page</a></p>
 </body>
 </html>

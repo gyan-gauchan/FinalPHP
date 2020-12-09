@@ -13,9 +13,13 @@ if(isset($_POST['update']))
                             Price ='".$price."' WHERE FoodID ='".$foodID."'";
     $result = $db->query($query);
 
+   
+
     if($result){
-        header("location:editMenu.php");
-        echo "Menu updated!";
+        //header("location:editMenu.php");
+        echo "<h3>Menu updated!</h3>";
+        ?><input type ="button" class="btnSignUp" onclick ="location.href='editMenu.php';" value= "Back to Edit"/>
+        <?php
     }
 else{
     echo "Please check the query";

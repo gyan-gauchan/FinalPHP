@@ -3,13 +3,14 @@
 session_start();
 if(!isset($_SESSION['valid_user'])){
   echo  "You are not logged in. Please login";
-  echo '<p><a href="loginPage.html">Click here to Login</a></p>';
+  echo '<p><a href="loginPage.php">Click here to Login</a></p>';
   die();
-}
-else{
-  if(!isset($_POST['orderNow'])){
-    echo '<p> Please enter the order quantity<p>';
-  }else{
+ }
+// else if(!isset($_POST['quantity_'])){
+//     echo '<p> Please enter the order quantity<p>';
+//     die();
+//   }
+  else{
 
  // echo "Your session is running " .$_SESSION['valid_user'];
  $order = [];
@@ -22,12 +23,13 @@ else{
        $order['quantity'] = $value;
        $_SESSION['order'][] = $order;
       //  echo $foodID;
-      //  echo $value.'</br>';
+      // echo $value.'</br>';
       }
     }
     
   } 
-}}require_once 'dbConnection.php';
+}
+require_once 'dbConnection.php';
  // print_r($_SESSION);
   $firstName=$_SESSION['first_name'];
 ?>
@@ -37,19 +39,49 @@ else{
 <html>
   <head>
     <title>About Us</title>
-   <!-- <link rel="stylesheet" href="styleau.css">-->
-   <link rel="stylesheet" href="mycss1.css">
+    <!-- <link rel="stylesheet" href="mycss1.css"> -->
+    <!-- <link rel="stylesheet" href="basic.css"> -->
+    <style>
+    * {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 100px;
+ 
+}
+
+.left {
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+table.tableFontSize tr td{
+  font-size:18px;
+}
+
+/* Clear floats after the columns */
+/* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+</style>
+  
   </head>
-  <header>
-  <ul class="nav">
-  <li class="navop"><a href="about.html">Home</a></li>
-  <li class="navop"><a href="restaurant_menu.html">Menu</a></li>
-  <li class="navop"><a href="loginPage.html">Login</a></li>
-  <li class="navop"><a href="contact2.html">Contact</a></li>
-	</ul>
-    </header>
+
+  <?php
+  require_once 'header2.php'; ?>
   <body>
 
+  <div class="paddingLeft" style ="width:100%">
+    <div class="row">
+  <div class="column left">
   <!-- <form method="post" action="orderConfirmation.php">  -->
     
       <?php
@@ -69,9 +101,9 @@ if(isset($_POST['orderNow']))  {
   
     if ($result->num_rows > 0) {
       $total = 0;
-      echo "<table style='width:20%;'><tr>
+      echo "<table class ='tableFontSize' style='width:70%;'><tr>
       <td><strong>Food</strong></td>
-      <td><strong>Quantity</strong></td>
+      <td style='text-align:center'><strong>Quantity</strong></td>
       <td style='text-align:right'><strong>Price</strong></td>
       </tr></b>";
   
@@ -80,7 +112,7 @@ if(isset($_POST['orderNow']))  {
           if (!empty($_POST['quantity_'.$row['FoodID']])) {
             $price = $_POST['quantity_'.$row['FoodID']] * $row['price'];
   
-            echo ' <tr>
+            echo ' <tr style="color:red">
             <td>'.$row['foodName'].'</td>
             <td style="text-align:center">'.$_POST['quantity_'.$row['FoodID']].'</td>
             <td style="text-align:right">$ '.number_format($price,2).'</td>
@@ -90,15 +122,16 @@ if(isset($_POST['orderNow']))  {
           }
       }
     }
-      $taxrate=0.10; //food tax rate
-      
-      $totalAfterTax=((number_format($total,2))+((number_format($total,2))*$taxrate));
+      $taxRate=0.10; //food tax rate
+      $subTotal = number_format($total,2);
+      $estimatedTax= $subTotal*$taxRate;
+      $totalAfterTax= $subTotal+$estimatedTax;
       echo '<tr><td colspan=2><p><strong>Sub Total </strong></td>'.
-      '<td style ="text-align:right"><strong>$ '.number_format($total,2).'</strong></td></p></tr>';
-      echo '<tr><td colspan=2><p><strong>Tax </strong></td>'.
-      '<td style ="text-align:right"><strong>$ '.(number_format($total,2))*$taxrate.'</strong></td></p></tr>';
+      '<td style ="text-align:right"><strong>$ '.$subTotal.'</strong></td></p></tr>';
+      echo '<tr><td colspan=2><p><strong>Estimated Tax </strong></td>'.
+      '<td style ="text-align:right;"><b>$ '.number_format($estimatedTax,2).'</b></td></p></tr>';
         echo '<tr><td colspan=2><p><strong>Total after tax </strong></td>'.
-        '<td style ="text-align:right"><strong>$ '.$totalAfterTax.'</strong></td></p></tr>';
+        '<td style ="text-align:right"><strong>$ '.number_format($totalAfterTax,2).'</strong></td></p></tr>';
         echo "</table>";
     
   }
@@ -116,31 +149,43 @@ $db->close();
 
 ?>
 
-<input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Add More"/>
+<input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Reset Order"/>
 
 
 </br>
 </br>
+</div>
+  <div class="column right">
 
-<hr>
 <h1>Payment Details</h1>
 <h2>Select payment type</h2>
 
 <form method="post" action="orderConfirmation.php">
-<p><strong>Amout Due: <?php echo $totalAfterTax; ?></strong></p>
 
-<select name="payType" id="payType">
+<select style="font-size:18px" name="payType" id="payType">
   <option value="Credit Card">Credit Card</option>
   <option value="Paypal">Paypal</option>
+  <option value="Cash">Cash</option>
 </select>
+
+</br>
+</br></br>
+</br>
+</br></br>
+
+<h4 style="color:red"><strong>Amout Due: <?php echo number_format($totalAfterTax,2); ?></strong></h4>
+
+
 
 
 
 <p><input type="submit" class="btnSignUp" name = "payment" value="Pay Now" /></p>
 
 </form>
-
-
+</div>
+</div>
+<?php
+  require_once 'footer.php'; ?>
 
 </body>
 </html>

@@ -1,23 +1,23 @@
 <?php
-session_start();
-if(!isset($_SESSION['valid_user'])){
-  echo "Access Denied! You are not logged in. Please login";
-  echo '<p><a href="loginPage.html">Click here to Login</a></p>';
-  die();
-}
-else{
-  echo "Your session is running " .$_SESSION['valid_user'];
 
-  $firstName=$_SESSION['first_name'];
-}
+require_once 'checkAdmin.php';
 
 ?>
-<?php
-require('header.php');
-?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page</title>
+    <!-- <link rel="stylesheet" href="mycss1.css"> -->
+    <link rel="stylesheet" href="basic.css">
+  
+  </head>
+
+  <?php
+  require_once 'header.php'; ?>
 <div class="all">
     <div class ="row" style="display:flex;">
-    <div class ="column" style="padding-top:100px;padding-left:80px;">
+    <div class ="column" style="padding-top:40px;padding-left:80px;">
 			  <!-- <h1><strong>ADMIN PAGE</strong></h1> -->
 		
 			  <form action="removeUser.php" method="post" class="signUpForm">
@@ -31,7 +31,7 @@ require('header.php');
         </form>
 </div>
 			  
-<div class ="column" style="padding-top:100px;padding-left:80px;">
+<div class ="column" style="padding-top:40px;padding-left:80px;">
 			  <h2><strong> Add User </strong></h2>
 			  <form action="processlibrary.php" method="post" class="signUpForm">
             <table style ="border:0px;">
@@ -78,53 +78,20 @@ require('header.php');
         </form> 
 </div>
 
-<div class ="column" style="padding-top:100px;padding-left:150px;">
-<h2>Welcome back <?php echo $firstName; ?>!</h2></br></br>
-<input type ="button" class="btnSignUp" onclick ="location.href='logout.php';" value= "Log Out"/></br></br></br></br>
-<input type ="button" class="btnSignUp" onclick ="location.href='menudisplay.php';" value= "Order Here"/></br></br>
+<div class ="column" style="padding-top:40px;padding-left:100px;">
+<h2>Welcome back <?php echo $sfirstName; ?>!</h2></br></br>
+
 <input type ="button" class="btnSignUp" onclick ="location.href='createMenuPage.php';" value= "Insert Menu"/></br></br>
 <input type ="button" class="btnSignUp" onclick ="location.href='editMenu.php';" value= "Edit Menu"/></br></br>
-<input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.html';" value= "Order Search"/>
+<input type ="button" class="btnSignUp" onclick ="location.href='searchOrder.php';" value= "Order Search"/>
 </div>
 
 </div>
 </div>
-              </body>
+             
+	<?php require_once 'footer.php'; ?>		   
 			   
-			   
-			   <footer class="footer bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="index.html">Metro</a>, All Rights Reserved</p>
-              </div>
-              <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-        <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-      </div>
-    </main>
-    <!--  
-    JavaScripts
-    =============================================
-    -->
-    <script src="assets/lib/jquery/dist/jquery.js"></script>
-    <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/lib/wow/dist/wow.js"></script>
-    <script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-    <script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
-    <script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-    <script src="assets/lib/flexslider/jquery.flexslider.js"></script>
-    <script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="assets/lib/smoothscroll.js"></script>
-    <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
-    <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
+
   </body>
 </html>
-        </html>
+       

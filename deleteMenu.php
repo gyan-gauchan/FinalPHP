@@ -9,8 +9,10 @@ if(isset($_GET['DeleteID']))
 
     if($result)
     {
-        header("location:editMenu.php");
-        echo "Menu deleted!";
+        //header("location:editMenu.php");
+        echo "<h3>Menu item deleted!</h3>";
+        ?><input type ="button" class="btnSignUp" onclick ="location.href='editMenu.php';" value= "Back to Edit"/>
+        <?php
         }
 
     

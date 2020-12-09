@@ -53,6 +53,6 @@
 
 
            ?>
-           <a href ="profile.html">Back to Profile</a>
+           <a href ="profile.php">Back to Profile</a>
            </body>
            </html>

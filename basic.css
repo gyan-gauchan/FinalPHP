@@ -121,7 +121,7 @@ a:active {
     color: #666666;
   
    
-    width: 200px;
+    width: 300px;
     background: #e6e6e6;
     height: 50px;
     border-radius: 25px;
@@ -166,9 +166,10 @@ a:active {
     text-align:"center";
 }
 .roundedInput {
-    padding:10px;
+    padding:5px;
+    padding-left:20px;
     border-radius:25px;
-    width: 200px;
+    width: 300px;
     background: #e6e6e6;
   }
   .btnSignUp{

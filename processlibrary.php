@@ -30,6 +30,7 @@ require_once 'dbConnection.php';
             || !isset($_POST['lname']) || !isset($_POST['phone'])){
             echo "<p> You have not entered all the required details.<br/>
             Please go back and try again.</p>";
+            
             exit;
             }
             
@@ -43,15 +44,15 @@ require_once 'dbConnection.php';
            }
            mysqli_query($db, $query);
            if($db->affected_rows > 0){
-            echo "<p>User Created Successfully.<br/>";
+            echo "<p><h3>User Created Successfully.</h3><br/>";
         
          
            }else{
-               echo "User not created successfully";
+               echo "<h3>User not created successfully</h3>";
            }
            $db->close();
 
             ?>
-            <p><a href = "loginPage.html">Go back to login</a></p>
+            <p><a href = "loginPage.php">Go back to login</a></p>
             </body>
             </html>

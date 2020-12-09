@@ -1,6 +1,31 @@
-<?php
+
+<?php 
+
 require('header2.php');
-?>
+
+if(!isset($_SESSION['valid_user'])){
+  echo "Access Denied! You are not logged in. Please login";
+  echo '<p><a href="loginPage.php">Click here to Login</a></p>';
+}
+else{
+  echo "Your session is running " .$_SESSION['valid_user'];
+
+  $firstName=$_SESSION['first_name'];
+}
+  ?>
+  
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Change User Email</title>
+    <!-- <link rel="stylesheet" href="mycss1.css"> -->
+    <link rel="stylesheet" href="basic2.css">
+  
+  </head>
+
+
+
+
 
 	  <h1>EMAIL PAGE</h1>
 	  
@@ -25,44 +50,12 @@ require('header2.php');
     }
 </script>
 <br /><br />
-    <button type="submit">Update Email</button>
+    <button type="submit" class="btnSignUp">Update Email</button>
    
 	</div>
   </form>
  
   
-	  <footer class="footer bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2020&nbsp;<a href="restIndex.php">Metro</a>, All Rights Reserved</p>
-              </div>
-              <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-        <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-      </div>
-    </main>
-    <!--  
-    JavaScripts
-    =============================================
-    -->
-    <script src="assets/lib/jquery/dist/jquery.js"></script>
-    <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/lib/wow/dist/wow.js"></script>
-    <script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-    <script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
-    <script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-    <script src="assets/lib/flexslider/jquery.flexslider.js"></script>
-    <script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="assets/lib/smoothscroll.js"></script>
-    <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
-    <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
+<?php require_once 'footer.php'; ?>
   </body>
 </html>

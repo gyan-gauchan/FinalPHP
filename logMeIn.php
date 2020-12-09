@@ -12,6 +12,7 @@ require_once 'dbConnection.php';
 
             <?php
             session_start();
+            $_SESSION['role']='';
             $_SESSION['valid_user']=$_POST['email'];
 
             if(isset($_POST['email']) && isset($_POST['pass'])){
@@ -45,6 +46,7 @@ require_once 'dbConnection.php';
                 $_SESSION['user_id'] = $resultStore->UserID;
                 $_SESSION['first_name']=$resultStore->FirstName;
                 if($resultStore->Role == 'Admin') {
+                    $_SESSION['role']= $resultStore->Role;
                     header("Location: admin.php");
                 } else {
                     echo '<p>You are logged in as: '.$_SESSION['valid_user'].'
@@ -82,6 +84,6 @@ require_once 'dbConnection.php';
         //         echo '<p>You are not logged in.</p>';
         //         }
             ?>
-        <p><a href = "loginPage.html">Go back to login</a></p>
+        <p><a href = "loginPage.php">Go back to login</a></p>
         </body>
     </html>

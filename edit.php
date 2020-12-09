@@ -1,21 +1,22 @@
 <?php
-session_start();
-if(!isset($_SESSION['valid_user'])){
-  echo "Access Denied! You are not logged in. Please login";
-  echo '<p><a href="loginPage.html">Click here to Login</a></p>';
-  die();
-
-}
-else{
-  //echo "Your session is running " .$_SESSION['valid_user'];
-    require_once 'dbConnection.php';
-    $firstName=$_SESSION['first_name'];
-
-}
-?>
-<?php
-//Connect to the db
+//require_once 'checkAdmin.php';
+require_once 'header2.php';
 require_once 'dbConnection.php';
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Insert Menu</title>
+    <!-- <link rel="stylesheet" href="mycss1.css"> -->
+    <link rel="stylesheet" href="basic2.css">
+  
+  </head>
+
+  <?php
+
+  
+
 $foodID =$_GET['GetID'];
 $sql = "SELECT * FROM menu WHERE FoodID='$foodID'";
 $result = $db->query($sql);
@@ -26,24 +27,16 @@ if ($result->num_rows > 0) {
        $image_path=$row['Image_path'];
        $price=$row['Price'];
    }
+ 
+  
 
 
 // $query = "SELECT * FROM menu WHERE FoodID='$foodID'";
 // $result = $db->query($query);
 // if ($result->num_rows > 0) {
 
-
-
-
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>About Us</title>
-   <!-- <link rel="stylesheet" href="styleau.css"> -->
-   <link rel="stylesheet" href="mycss1.css">
-   <link rel="stylesheet" href="mycss2.css">
-   <style>
+<style>
 table,th, td {
     border:1px solid black;
     border-collapse: collapse;
@@ -54,22 +47,12 @@ tr {
 }
 </style>
 
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
-		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-  </head>
-  <header>
-  <ul class="nav">
-  <li class="navop"><a href="about.html">Home</a></li>
-  <li class="navop"><a href="restaurant_menu.html">Menu</a></li>
-  <li class="navop"><a href="logout.php">Sign Out</a></li>
-  <li class="navop"><a href="contact2.html">Contact</a></li>
-	</ul>
-    </header>
   <body>
 
 
-      <div class="h1center">
+  <div style="padding-Left: 600px">
       <h1>Edit Menu</h1>
+</div>
       <h2></h2>
       <form method="post" action="updateMenu.php?ID=<?php echo $foodID ?> ">
             <table style="margin-left: auto; margin-right: auto;">
@@ -102,6 +85,8 @@ tr {
         echo '</table>';  
       
     ?>
+    </br>
+    <div style="padding-Left: 600px">
     <p><input type="submit" class="btnSignUp" name = "update" value="Update" /></p>
          
 </form>
@@ -112,7 +97,7 @@ tr {
 
 
 
-
+<?php require_once 'footer.php'; ?>
 
 </body>
 </html>
